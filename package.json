@@ -1,0 +1,26 @@
+{
+  "name": "2017b3-tp-njs-cli",
+  "version": "1.0.0",
+  "description": "meteo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aTewan/2017B3-TP-NJS-CLI.git"
+  },
+  "keywords": [
+    "meteo"
+  ],
+  "author": "Antoine et Alexandre les bg qui retournent la street tu le c",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aTewan/2017B3-TP-NJS-CLI/issues"
+  },
+  "homepage": "https://github.com/aTewan/2017B3-TP-NJS-CLI#readme",
+  "dependencies": {
+    "commander": "^2.14.1",
+    "request": "^2.83.0"
+  }
+}
