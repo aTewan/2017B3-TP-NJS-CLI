@@ -2,6 +2,7 @@
 
 const program = require('commander');
 const request = require('request');
+const asciify = require('asciify');
 
 /** Clé pour appeler l'API OpenWeatherAPI */
 const key = "3130f4dad1d25281d3c4a7bfb4363f37";
@@ -15,6 +16,7 @@ program
 
 /** Option possible pour commander */
 if(program.day) {
+    title();
     let url = "http://api.openweathermap.org/data/2.5/weather?q=" + program.day + "&appid=" + key;
     getMeteoVilleJour(url);
 }
@@ -32,4 +34,8 @@ function getMeteoVilleJour(url) {
         let result = json.name + ", " + json.sys.country + "    " + temp_c + " °C";
         console.log(result);
     });
+}
+
+function title() {
+    asciify('Meteo', {font: 'larry3d'}, function(err, res){ console.log(res) });
 }
