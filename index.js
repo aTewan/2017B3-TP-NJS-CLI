@@ -27,6 +27,9 @@ if(program.day) {
 function getMeteoVilleJour(url) {
     request.get(url, (error, response, body) =>  {
         let json = JSON.parse(body);
-        console.log(json);
+        let temp_k = json.main.temp;
+        let temp_c = Math.round(temp_k - 273.15);
+        let result = json.name + ", " + json.sys.country + "    " + temp_c + " °C";
+        console.log(result);
     });
 }
