@@ -2,4 +2,4 @@
 
 ## Commandes :
 
-* node index.js -d [city] : permet de récupérer la température du jour dans cette ville.
+* meteo -d [city] : permet de récupérer la météo du jour dans cette ville.

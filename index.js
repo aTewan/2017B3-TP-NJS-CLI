@@ -11,8 +11,6 @@ const MeteoJour = require('./MeteoJour');
 /** Clé pour appeler l'API OpenWeatherAPI */
 const key = "3130f4dad1d25281d3c4a7bfb4363f37";
 
-
-
 /** Configuration pour commander */
 program
 .version('1.0.0')
