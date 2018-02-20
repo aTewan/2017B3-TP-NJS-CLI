@@ -74,9 +74,52 @@ const WeatherIcons = {
         '\x1B[38;5;240;1m   (___(__)  \x1B[0m',
         '\x1B[38;5;255;1m   * * * *   \x1B[0m',
         '\x1B[38;5;255;1m  * * * *    \x1B[0m'
+    ],
+    'mist': [
+        '             ',
+        '\x1B[38;5;250m _ - _ - _ -  \x1B[0m',
+        '\x1B[38;5;250m  _ - _ - _   \x1B[0m',
+        '\x1B[38;5;250m  _ - _ - _ - \x1B[0m',
+        '             ',
     ]
 }
 
+const getWeatherIcon = (condition_code) => {
+    let icone;
+    if(condition_code>=200 && condition_code<=232) {
+        icone = WeatherIcons.thunderstorm;
+    }
+    else if(condition_code>=300 && condition_code<=321) {
+        icone = WeatherIcons.shower;
+    }
+    else if(condition_code>=500 && condition_code<=504) {
+        icone = WeatherIcons.light_rain;
+    }
+    else if(condition_code === 511) {
+        icone = WeatherIcons.snow;
+    }
+    else if(condition_code>=520 && condition_code<=531) {
+        icone = WeatherIcons.heavy_rain;
+    }
+    else if(condition_code>=600 && condition_code<=622) {
+        icone = WeatherIcons.snow;
+    }
+    else if(condition_code>=700 && condition_code<=799){
+        icone = WeatherIcons.mist;
+    }
+    else if(condition_code === 800) {
+        icone = WeatherIcons.clear_sky;
+    }
+    else if(condition_code === 801) {
+        icone = WeatherIcons.light_cloud;
+    }
+    else if(condition_code>= 802 && condition_code<= 804) {
+        icone = WeatherIcons.heavy_cloud;
+    }
+    return icone;
+}
+
 module.exports = {
-    WeatherIcons
+    WeatherIcons,
+    getWeatherIcon
 }
