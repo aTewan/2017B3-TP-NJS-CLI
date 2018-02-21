@@ -6,7 +6,7 @@ const Table = require('cli-table2');
 const moment = require('moment');
 
 const AsciiArt = require('./AsciiArt');
-const Format = require('./Format');
+const Utils = require('./Utils');
 
 
 moment.locale('fr');
@@ -50,11 +50,11 @@ module.exports = class MeteoJour {
     static affichage(MeteoJour) {
         console.log(prev_jour_ville + chalk.bold(MeteoJour.ville) + ", " + chalk.bold(MeteoJour.pays));
         let date = MeteoJour.date;
-        let description = Format.capitalize(MeteoJour.description);
-        let temperature = Format.tempColorDisplay(MeteoJour.temp_min, MeteoJour.temp_max);
+        let description = Utils.capitalize(MeteoJour.description);
+        let temperature = Utils.tempColorDisplay(MeteoJour.temp_min, MeteoJour.temp_max);
         let humidite = chalk.cyan(MeteoJour.humidite +"%");
         let icone = AsciiArt.getWeatherIcon(MeteoJour.condition_code);
-        let table = Format.creerTableau(date,icone,description,temperature,humidite);
+        let table = Utils.creerTableau(date,icone,description,temperature,humidite);
         console.log(table.toString());
     }
 }

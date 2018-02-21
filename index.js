@@ -13,6 +13,7 @@ const key = "3130f4dad1d25281d3c4a7bfb4363f37";
 program
 .version('1.0.0')
 .option('-d, --day [city]','Return the today city weather')
+.option('-w, --week [city]','Return the week city weather')
 .parse(process.argv);
 
 /** Option possible pour commander */
@@ -25,6 +26,9 @@ if(program.day) {
     .catch(function(err) {
         console.log("Erreur : " +err)
     });
+}
+else if(program.week) {
+    console.log(program.week);
 }
 
 function getMeteoVilleJour(url) {
