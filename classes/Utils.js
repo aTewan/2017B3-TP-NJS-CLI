@@ -1,10 +1,22 @@
 const chalk = require('chalk');
 const Table = require('cli-table2');
 
+/**
+ * capitalize
+ * @param {*} string
+ * Retourne la string avec la première lettre en majuscule.
+ */
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * tempColorDisplay
+ * @param {*} temp_min 
+ * @param {*} temp_max 
+ * Retourne la température si la température minimum et la température maxium sont égales.
+ * Et colorise la string température en fonction de sa température.
+ */
 const tempColorDisplay = (temp_min, temp_max) => {
     let temperature;
 
@@ -48,6 +60,15 @@ const tempColorDisplay = (temp_min, temp_max) => {
     }
 }
 
+/**
+ * creerTableau
+ * @param {*} date 
+ * @param {*} icone 
+ * @param {*} description 
+ * @param {*} temperature 
+ * @param {*} humidite
+ * Retourne un tableau créé à partir des données passés en paramètre. 
+ */
 const creerTableau = (date, icone, description, temperature, humidite) => {
     let table = new Table({ 
         head: [date],
