@@ -37,10 +37,6 @@ else if(program.week) {
     let url = "http://api.openweathermap.org/data/2.5/forecast?q=" + program.week +  "&units=metric&lang=fr&appid=" + key;
     getMeteoVilleSemaine(url).then(function(body) {
         MeteoPrevision.affichage(body);
-
-        // Affichage sous formes de lignes ou tableau des différentes périodes (date, h, temp, desc)
-        // Si la date est la même alors ne pas afficher plusieurs fois sinon afficher la date. un bail avec une variable temp ;)
-
         // Possibilité d'ajout de favoris avec une base SQLite où on ne stocke que la ville et le mode d'appel (météo d'auj ou forecast).
 
         // Test de vérification des URL pour se rapprocher de la programmation fonctionnelle.
