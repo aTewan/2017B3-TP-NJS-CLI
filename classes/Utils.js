@@ -10,14 +10,30 @@ const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const tempColorDisplay = (temp) => {
+    let temperature;
+
+    if(temp<=14){
+        temperature = chalk.blue(temp + "°C");
+    }
+    else if(temp>=15 && temp <25) {
+        temperature = chalk.yellow(temp + "°C");
+    }
+    else if(temp>=25) {
+        temperature = chalk.red(temp + "°C");
+    }
+
+    return temperature;
+}
+
 /**
- * tempColorDisplay
+ * tempMinMaxColorDisplay
  * @param {*} temp_min 
  * @param {*} temp_max 
  * Retourne la température si la température minimum et la température maxium sont égales.
  * Et colorise la string température en fonction de sa température.
  */
-const tempColorDisplay = (temp_min, temp_max) => {
+const tempMinMaxColorDisplay = (temp_min, temp_max) => {
     let temperature;
 
     if(temp_min === temp_max) {
@@ -25,7 +41,7 @@ const tempColorDisplay = (temp_min, temp_max) => {
         if(temp_min<=14) {
             temperature = chalk.blue(temperature);
         }
-        else if(temp_min>=15 && temp_min<=25) {
+        else if(temp_min>=15 && temp_min<25) {
             temperature = chalk.yellow(temperature);
         }
         else if(temp_min>=25) {
