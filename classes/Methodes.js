@@ -1,4 +1,8 @@
 const request = require('request');
+const { prompt } = require('inquirer');
+const sqlite3 = require('sqlite3').verbose();
+const chalk = require('chalk');
+
 
 /** Clé pour appeler l'API OpenWeatherAPI */
 const key = "3130f4dad1d25281d3c4a7bfb4363f37";
@@ -9,11 +13,41 @@ const MeteoJour = require('./MeteoJour');
 const MeteoPrevision = require('./MeteoPrevision');
 const Erreur = require('./Erreur');
 
+const list = {
+    type: 'list',
+    message: 'Voulez-vous ajouter cette ville à vos favoris ?',
+    name: 'ajouterFavori',
+    choices: ['Oui','Non']
+};
+
 const recupererMeteoVilleJour = (answer) => {
-    let url = "http://api.openweathermap.org/data/2.5/weather?q=" + answer.ville +  "&units=metric&lang=fr&appid=" + key;
+    let ville = answer;
+    let url = "http://api.openweathermap.org/data/2.5/weather?q=" + ville +  "&units=metric&lang=fr&appid=" + key;
     getMeteoVilleJour(url).then(function(body) {
         MeteoJour.affichage(body);
-        //play.sound('./sounds/sound.mp3');
+        prompt(list).then(answer => {
+            if(answer.ajouterFavori == "Oui") {
+                let file = "database.db";
+                let db = new sqlite3.Database(file);
+                db.serialize(function() {
+                    db.run("CREATE TABLE if not exists villes (info VILLES)");
+                    db.all("SELECT DISTINCT info as ville FROM villes WHERE ville = '" + ville + "'", function(err,row) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            if(row[0] == null) {
+                                db.run("INSERT INTO villes(info) VALUES ('"+ ville +"')");
+                                console.log("Ajout de la ville de "+ chalk.bold(body.ville) + " à vos favoris !"); 
+                            }
+                            else {
+                                console.log(Erreur.VILLE_DEJA_FAVORI);
+                            }
+                        }
+                    });
+                });
+            }
+        });
     })
     .catch(function(err) {
         if(err == NOT_FOUND)
