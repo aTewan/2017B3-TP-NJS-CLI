@@ -6,6 +6,10 @@
 * meteo w : permet de récupérer la météo sur les 5 prochains jours dans cette ville.  
 * meteo f : permet de voir les villes ajoutées en favoris et ainsi de récupérer leurs météos.
 
+## API utilisée :
+
+* OpenWeatherMap : http://openweathermap.org/
+
 ## Modules utilisés :
 
 * Commander : afin de convertir notre application en commande shell.
